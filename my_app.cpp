@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <cstring>
+#include <png.h>
 #include <zlib.h>
 
 int main(int argc, char** argv) {
@@ -19,12 +20,19 @@ int main(int argc, char** argv) {
     deflate(&defstream, Z_FINISH);
     deflateEnd(&defstream);
 
-    printf("Compressed size is: %lu\n", strlen(buffer_in));
-    printf("Compressed string is: %s\n", buffer_in);
-    printf("Compressed size is: %lu\n", strlen(buffer_out));
-    printf("Compressed string is: %s\n", buffer_out);
+    std::cout << "Compressed size is: " << strlen(buffer_in) << "\n";
+    std::cout << "Compressed string is: " << buffer_in << "\n";
+    std::cout << "Compressed size is: " << strlen(buffer_out) << "\n";
+    std::cout << "ZLIB_VERSION is: " << zlibVersion() << "\n";
 
-    printf("ZLIB VERSION: %s\n", zlibVersion());
+    png_structp png_ptr;
+    png_infop info_ptr;
+
+    std::cout << "Libpng is: " << PNG_LIBPNG_VER_STRING << "\n";
+
+    // fprintf(stderr, "   Compiled with libpng %s; using libpng %s.\n", PNG_LIBPNG_VER_STRING, png_libpng_ver);
+    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    info_ptr = png_create_info_struct(png_ptr);
 
     return EXIT_SUCCESS;
 }
