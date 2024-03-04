@@ -29,13 +29,15 @@ On Linux:
 
 ```
 # Install dependencies
-conan install --build=missing
+conan install . --build=missing
 
 # Configure CMake and build project
 cmake . --preset=conan-default
 cmake --build . --preset=conan-release
 
 # Install and bundle runtime dependencies
-mkdir install
-cmake --install build --prefix=install
+mkdir build/install
+cmake --install build --prefix=build/install
 ```
+
+* The required DLL files are copied in the `build/install/bin` subdirectory.
