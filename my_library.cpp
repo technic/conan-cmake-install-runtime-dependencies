@@ -1,6 +1,6 @@
 #include <my_library.h>
 #include <zlib.h>
-#include <string>
+#include <cstring>
 
 int add_two(const int number) {
     return number + 2;
