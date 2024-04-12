@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.26)
 project(MyApp LANGUAGES C CXX)
 enable_testing()
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 include(GNUInstallDirs)
 
 file(RELATIVE_PATH relative_lib_dir

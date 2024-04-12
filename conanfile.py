@@ -6,10 +6,14 @@ class MyApp(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "CMakeDeps"
 
+    def configure(self):
+        self.options["zlib"].shared = True
+        self.options["libpng"].shared = True
+
     def requirements(self):
         self.requires("zlib/[>=1.3]", options={"shared": True})
         self.requires("libpng/[>1.6.40]", options={"shared": True})
-        self.test_requires("gtest/1.14.0")
+        self.requires("gtest/1.14.0")
 
     def generate(self):
         tc = CMakeToolchain(self)
